@@ -18,19 +18,19 @@ Overall, a recipe book app made in Flutter provides a convenient and user-friend
 
 ### Home Screen
 
-![Home Screen](./screenshorts/s1.png)
+<img src="./screenshorts/s1.png" width="200">
 
 ### Catogory Screen
 
-![Catogory Screen](./screenshorts/s2.png)
+<img src="./screenshorts/s2.png" width="200">
 
 ### Favorite Screen
 
-![Favorite Screen](./screenshorts/s4.png)
+<img src="./screenshorts/s4.png" width="200">
 
 ### Recipe Screen
 
-![Recipe Screen](./screenshorts/s3.png)
+<img src="./screenshorts/s3.png" width="200">
 
 ---
 
