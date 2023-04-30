@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:recipebook/data/dummy_data.dart';
-
 import 'package:recipebook/model/category.dart';
 import 'package:recipebook/model/recipe.dart';
 
