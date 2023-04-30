@@ -44,9 +44,12 @@ class RecipeCard extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              Image(
-                image: NetworkImage(recipeItem.imageUrl),
-                fit: BoxFit.fitWidth,
+              Hero(
+                tag: ValueKey(recipeItem.id),
+                child: Image(
+                  image: NetworkImage(recipeItem.imageUrl),
+                  fit: BoxFit.fitWidth,
+                ),
               ),
               Container(
                 width: double.infinity,
@@ -64,14 +67,17 @@ class RecipeCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        width: 400,
-                        child: Text(recipeItem.title,
-                            style: const TextStyle(
-                                overflow: TextOverflow.ellipsis,
-                                color: Colors.white,
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold)),
+                      Hero(
+                        tag: recipeItem.id,
+                        child: SizedBox(
+                          width: 400,
+                          child: Text(recipeItem.title,
+                              style: const TextStyle(
+                                  overflow: TextOverflow.ellipsis,
+                                  color: Colors.white,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold)),
+                        ),
                       ),
                       const SizedBox(
                         height: 10,

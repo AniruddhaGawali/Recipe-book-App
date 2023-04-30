@@ -58,21 +58,27 @@ class RecipeScreen extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.network(
-                  recipe.imageUrl,
+              Hero(
+                tag: ValueKey(recipe.id),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.network(
+                    recipe.imageUrl,
+                  ),
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
-              Text(
-                recipe.title,
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    overflow: TextOverflow.visible),
+              Hero(
+                tag: recipe.id,
+                child: Text(
+                  recipe.title,
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      overflow: TextOverflow.visible),
+                ),
               ),
               const SizedBox(
                 height: 5,
