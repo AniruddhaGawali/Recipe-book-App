@@ -3,10 +3,11 @@ import 'package:recipebook/model/recipe.dart';
 import 'package:recipebook/screens/recipe_screen.dart';
 
 class RecipeCard extends StatelessWidget {
-  final Function addToFavorites;
   final Recipe recipeItem;
-  const RecipeCard(
-      {super.key, required this.recipeItem, required this.addToFavorites});
+  const RecipeCard({
+    super.key,
+    required this.recipeItem,
+  });
 
   String get _getComplexity {
     return recipeItem.complexity.name[0].toUpperCase() +
@@ -22,7 +23,6 @@ class RecipeCard extends StatelessWidget {
     Navigator.of(context).push(MaterialPageRoute(builder: (bctx) {
       return RecipeScreen(
         recipe: recipeItem,
-        addToFavorites: addToFavorites,
       );
     }));
   }

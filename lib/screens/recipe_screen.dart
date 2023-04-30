@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:recipebook/model/recipe.dart';
 
-class RecipeScreen extends StatelessWidget {
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:recipebook/provider/favorite_recipe_provider.dart';
+
+class RecipeScreen extends ConsumerWidget {
   final Recipe recipe;
-  final Function addToFavorites;
-  const RecipeScreen(
-      {super.key, required this.recipe, required this.addToFavorites});
+  const RecipeScreen({
+    super.key,
+    required this.recipe,
+  });
 
   String get _getComplexity {
     return recipe.complexity.name[0].toUpperCase() +
@@ -18,7 +22,7 @@ class RecipeScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -26,7 +30,20 @@ class RecipeScreen extends StatelessWidget {
         ),
         actions: [
           InkWell(
-            onTap: () => addToFavorites(recipe),
+            onTap: () {
+              final isAdded = ref
+                  .read(favoriteRecipeProvider.notifier)
+                  .toggleFavoriteRecipe(recipe);
+
+              ScaffoldMessenger.of(context).clearSnackBars();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    isAdded ? "Recipe added as a Favorite" : "Recipe Removed",
+                  ),
+                ),
+              );
+            },
             child: const Icon(Icons.star),
           ),
           const SizedBox(

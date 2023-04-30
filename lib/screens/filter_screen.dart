@@ -1,23 +1,16 @@
 import 'package:flutter/material.dart';
 
-class FilterScreen extends StatefulWidget {
-  final Function changeFilter;
-  final Map<String, bool> allFilters;
-  const FilterScreen(
-      {super.key, required this.changeFilter, required this.allFilters});
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:recipebook/provider/filter_provider.dart';
+
+class FilterScreen extends ConsumerWidget {
+  const FilterScreen({
+    super.key,
+  });
 
   @override
-  State<FilterScreen> createState() => _FilterScreenState();
-}
-
-class _FilterScreenState extends State<FilterScreen> {
-  late bool _isGlutenFree = widget.allFilters['isGlutenFree']!;
-  late bool _isLactoseFree = widget.allFilters['isLactoseFree']!;
-  late bool _isVegetarian = widget.allFilters['isVegetarian']!;
-  late bool _isVegan = widget.allFilters['isVegan']!;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(filterProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Filter"),
@@ -29,12 +22,11 @@ class _FilterScreenState extends State<FilterScreen> {
             Row(
               children: [
                 Switch(
-                  value: _isGlutenFree,
+                  value: ref.watch(filterProvider)[Filter.glutenFree]!,
                   onChanged: (value) {
-                    widget.changeFilter(1);
-                    setState(() {
-                      _isGlutenFree = value;
-                    });
+                    ref
+                        .read(filterProvider.notifier)
+                        .toggleFilter(Filter.glutenFree);
                   },
                 ),
                 const SizedBox(
@@ -52,12 +44,11 @@ class _FilterScreenState extends State<FilterScreen> {
             Row(
               children: [
                 Switch(
-                  value: _isLactoseFree,
+                  value: ref.watch(filterProvider)[Filter.lactoseFree]!,
                   onChanged: (value) {
-                    widget.changeFilter(2);
-                    setState(() {
-                      _isLactoseFree = value;
-                    });
+                    ref
+                        .read(filterProvider.notifier)
+                        .toggleFilter(Filter.lactoseFree);
                   },
                 ),
                 const SizedBox(
@@ -75,12 +66,11 @@ class _FilterScreenState extends State<FilterScreen> {
             Row(
               children: [
                 Switch(
-                  value: _isVegetarian,
+                  value: ref.watch(filterProvider)[Filter.vegetarian]!,
                   onChanged: (value) {
-                    widget.changeFilter(3);
-                    setState(() {
-                      _isVegetarian = value;
-                    });
+                    ref
+                        .read(filterProvider.notifier)
+                        .toggleFilter(Filter.vegetarian);
                   },
                 ),
                 const SizedBox(
@@ -98,12 +88,11 @@ class _FilterScreenState extends State<FilterScreen> {
             Row(
               children: [
                 Switch(
-                  value: _isVegan,
+                  value: ref.watch(filterProvider)[Filter.vegan]!,
                   onChanged: (value) {
-                    widget.changeFilter(4);
-                    setState(() {
-                      _isVegan = value;
-                    });
+                    ref
+                        .read(filterProvider.notifier)
+                        .toggleFilter(Filter.vegan);
                   },
                 ),
                 const SizedBox(

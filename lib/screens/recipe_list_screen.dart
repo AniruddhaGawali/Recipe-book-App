@@ -6,12 +6,12 @@ import 'package:recipebook/widgits/recipe_card.dart';
 class RecipeListScreen extends StatelessWidget {
   final Category? categoryType;
   final List<Recipe> recipeList;
-  final Function addToFavorites;
-  const RecipeListScreen(
-      {super.key,
-      required this.recipeList,
-      this.categoryType,
-      required this.addToFavorites});
+
+  const RecipeListScreen({
+    super.key,
+    required this.recipeList,
+    this.categoryType,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,8 @@ class RecipeListScreen extends StatelessWidget {
         itemCount: recipeList.length,
         itemBuilder: (ctx, index) {
           return RecipeCard(
-              recipeItem: recipeList[index], addToFavorites: addToFavorites);
+            recipeItem: recipeList[index],
+          );
         },
       ),
     );

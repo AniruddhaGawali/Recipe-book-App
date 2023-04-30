@@ -10,13 +10,9 @@ import 'package:recipebook/screens/recipe_list_screen.dart';
 class CatergoryCard extends StatelessWidget {
   final Category category;
   final List<Recipe> allRecipes;
-  final Function addToFavorites;
 
   const CatergoryCard(
-      {super.key,
-      required this.category,
-      required this.addToFavorites,
-      required this.allRecipes});
+      {super.key, required this.category, required this.allRecipes});
 
   void _addRecipeListScreen(BuildContext context, Category categoryitem) {
     List<Recipe> recipes = allRecipes
@@ -27,9 +23,9 @@ class CatergoryCard extends StatelessWidget {
       MaterialPageRoute(
         builder: (bctx) {
           return RecipeListScreen(
-              categoryType: categoryitem,
-              recipeList: recipes,
-              addToFavorites: addToFavorites);
+            categoryType: categoryitem,
+            recipeList: recipes,
+          );
         },
       ),
     );

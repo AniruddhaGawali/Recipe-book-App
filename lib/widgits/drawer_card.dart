@@ -3,13 +3,11 @@ import 'package:recipebook/screens/filter_screen.dart';
 
 class CustomDrawer extends StatelessWidget {
   final int pageIndex;
-  final Function changeFilter;
-  final Map<String, bool> allFilters;
-  const CustomDrawer(
-      {super.key,
-      required this.pageIndex,
-      required this.changeFilter,
-      required this.allFilters});
+
+  const CustomDrawer({
+    super.key,
+    required this.pageIndex,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -47,8 +45,7 @@ class CustomDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pop();
               Navigator.of(context).push(MaterialPageRoute(builder: (bctx) {
-                return FilterScreen(
-                    changeFilter: changeFilter, allFilters: allFilters);
+                return const FilterScreen();
               }));
             },
             leading: const Icon(Icons.filter_alt),

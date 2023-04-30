@@ -1,19 +1,17 @@
 import "package:flutter/material.dart";
 
 import "package:recipebook/data/dummy_data.dart";
-import "package:recipebook/model/recipe.dart";
+
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:recipebook/provider/recipes_provider.dart';
 
 import "package:recipebook/widgits/category_card.dart";
 
-class CategotiesScreen extends StatelessWidget {
-  final Function addToFavorites;
-  final List<Recipe> allRecipes;
-
-  const CategotiesScreen(
-      {super.key, required this.addToFavorites, required this.allRecipes});
+class CategotiesScreen extends ConsumerWidget {
+  const CategotiesScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return GridView(
       padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -24,9 +22,7 @@ class CategotiesScreen extends StatelessWidget {
       children: [
         ...availableCategories.map((category) {
           return CatergoryCard(
-              category: category,
-              addToFavorites: addToFavorites,
-              allRecipes: allRecipes);
+              category: category, allRecipes: ref.watch(allFilteredRecipe));
         }).toList(),
       ],
     );
